@@ -173,7 +173,7 @@ void ps(const string& text, int delay_ms) {
         this_thread::sleep_for(chrono::milliseconds(delay_ms));
     }
 }
-void random_cv(string idk[5],vector<string>cvs) {
+void random_cv(string idk[5], vector<string>& cvs) {
     int vc = rand() % 5;
     string text = "";
     cvs.push_back(idk[vc]);
@@ -200,7 +200,7 @@ void rand_prog(string names[50], string surnames[50], vector<string>& d) {
 void raiting(string raiting[], vector<int>& star) {
     int a = rand() % 4 + 1;
     star.push_back(a);
-    cout << "Рейтинг: "+stars[a];
+    cout << "Raiting: " + stars[a];
 
 
 
@@ -210,10 +210,10 @@ void questions_f() {
     int b;
     cout << "Type question number to find the answers: ";
     cin >> b;
-        cout << endl << "Good answer: " + good_answers[b - 1] << endl << endl;
-        cout << "Recommended answer: " + mid_answers[b - 1] << endl << endl;
-         cout << "Bad answer: " + bad_answers[b - 1] << endl << endl << endl;
-    
+    cout << endl << "Good answer: " + good_answers[b - 1] << endl << endl;
+    cout << "Recommended answer: " + mid_answers[b - 1] << endl << endl;
+    cout << "Bad answer: " + bad_answers[b - 1] << endl << endl << endl;
+
 }
 void line() { cout << " |-------------------------------------------------------------------------------------------------------------|" << endl; }
 
@@ -292,6 +292,7 @@ void menu() {
             line();
 
             if (f.empty()) {
+                
                 system("cls");
                 break;
             }
@@ -567,6 +568,7 @@ void game() {
 
         cout << "\n(Press Enter to continue)";
         getline(cin, skip);
+        
 
 
     }
@@ -581,92 +583,179 @@ void game() {
             cin >> username;
 
         }
+        
         dialog("Hello " + username + " it's your first working day!\n\n", 20, freaz);
         dialog("So let's start!\n\n", 20, freaz);
         system("cls");
         vector<string> name;
         vector<int> star;
         vector<string> vc;
-        vector<string> answers;
         int days = 0;
         int candidates = 6;
-        int ch, ch_i, budget = 5000, workers = 0;
+        int ch, ch_i, budget = 5000, workers = 0,times = 0, times_t = 0, times_cv = 0;
         while (true) {
+            
+            
             bool good = false, mid = false, bad = false;
             days += 1;
             ps("Day " + to_string(days), 20);
             for (int i = 0; i < candidates; i++) {
+
                 cout << endl << "Company budget: " << budget << "$" << endl;
+                cout << "Candidates left: " << candidates-i << endl;
                 cout << "Workers: " << workers << endl << endl;
                 cout << endl;
                 rand_prog(names, surnames, name);
                 cout << endl;
                 raiting(stars, star);
                 cout << endl;
+                cout << endl;
 
                 while (true) {
+                    cout << endl;
                     cout << "1 - CV     2 - Talk      3 - Notepad\n      4 - Accept      5 - Reject\n\n              ";
                     cin >> ch;
                     switch (ch) {
+                        
                     case 1: {
-                        if (star[i] <= 2) {
-                            random_cv(vc_p_jun, vc);
+                        if (times == 0) {
+                            if (star[workers] <= 2) {
+                                random_cv(vc_p_jun, vc);
+                            }
+                            else if (star[workers] == 3) {
+                                random_cv(vc_p_mid, vc);
+                            }
+                            else {
+                                random_cv(vc_p_sen, vc);
+                            }times += 1; times_cv += 1;
                         }
-                        else if (star[i] == 3) {
-                            random_cv(vc_p_mid, vc);
-                        }
-                        else {
-                            random_cv(vc_p_sen, vc);
-                        }
+                        else { ps(vc[workers], 20); }
                         break;
                     }
                     case 2: {
                         cout << "Questions:\n";
-                        for (size_t i = 0; i < 14; i++) {
-                            cout << to_string(i + 1) + ") " << questions[i] + ";" << endl;
+                        for (size_t j = 0; j < 14; j++) {
+                            cout << to_string(j + 1) + ") " << questions[j] + ";" << endl;
                         }
                         cout << "Choose question:"; cin >> ch_i;
 
-                        dialog(questions[ch - 1] + "\n", 20, character);
+                        dialog(questions[ch_i - 1] + "\n", 20, character);
                         switch (star[i]) {
                         case 1: {
                             int b = rand() % 10;
-                            if (b > 4) { dialog(bad_answers[ch - 1], 20, name[i]); bad = true; }
-                            else if (b < 4 && b != 1) { dialog(mid_answers[ch - 1], 20, name[i]); mid = true; }
-                            else if (b == 1) { dialog(good_answers[ch - 1], 20, name[i]); good = true; }break;
+                            if (b > 4) { dialog(bad_answers[ch_i - 1], 20, name[workers]); bad = true; }
+                            else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, name[workers]); mid = true; }
+                            else if (b == 1) { dialog(good_answers[ch_i - 1], 20, name[workers]); good = true; }break;
                         }
                         case 2: {
                             int b = rand() % 10;
-                            if (b >= 4) { dialog(bad_answers[ch - 1], 20, name[i]); bad = true; }
-                            else if (b < 4 && b != 1) { dialog(mid_answers[ch - 1], 20, name[i]); mid = true; }
-                            else if (b == 1) { dialog(good_answers[ch - 1], 20, name[i]); good = true; } break;
+                            if (b >= 4) { dialog(bad_answers[ch_i - 1], 20, name[workers]); bad = true; }
+                            else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, name[workers]); mid = true; }
+                            else if (b == 1) { dialog(good_answers[ch_i - 1], 20, name[workers]); good = true; } break;
                         }
                         case 3: {
                             int b = rand() % 10;
-                            if (b >= 8) { dialog(bad_answers[ch - 1], 20, name[i]);  bad = true; }
-                            else if (b < 8 && b >= 3) { dialog(mid_answers[ch - 1], 20, name[i]); mid = true; }
-                            else if (b < 3) { dialog(good_answers[ch - 1], 20, name[i]); good = true; }break;
+                            if (b >= 8) { dialog(bad_answers[ch_i - 1], 20, name[workers]);  bad = true; }
+                            else if (b < 8 && b >= 3) { dialog(mid_answers[ch_i - 1], 20, name[workers]); mid = true; }
+                            else if (b < 3) { dialog(good_answers[ch_i - 1], 20, name[workers]); good = true; }break;
                         }
                         case 4: {
                             int b = rand() % 10;
-                            if (b >= 9) { dialog(bad_answers[ch - 1], 20, name[i]);  bad = true; }
-                            else if (b < 9 && b >= 5) { dialog(mid_answers[ch - 1], 20, name[i]); mid = true; }
-                            else if (b < 5) { dialog(good_answers[ch - 1], 20, name[i]); good = true; }break;
+                            if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, name[workers]);  bad = true; }
+                            else if (b < 9 && b >= 5) { dialog(mid_answers[ch_i - 1], 20, name[workers]); mid = true; }
+                            else if (b < 5) { dialog(good_answers[ch_i - 1], 20, name[workers]); good = true; }break;
                         }
                         case 5: {
                             int b = rand() % 10;
-                            if (b >= 9) { dialog(bad_answers[ch - 1], 20, name[i]);  bad = true; }
-                            else if (b < 9 && b >= 7) { dialog(mid_answers[ch - 1], 20, name[i]); }
-                            else if (b < 7) { dialog(good_answers[ch - 1], 20, name[i]); good = true; }break;
+                            if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, name[workers]);  bad = true; }
+                            else if (b < 9 && b >= 7) { dialog(mid_answers[ch_i - 1], 20, name[workers]); }
+                            else if (b < 7) { dialog(good_answers[ch_i - 1], 20, name[workers]); good = true; }break;
                         }
+                              break;
 
 
                         }
+                        times_t += 1;
+                        break;
                     }
+                    case 3: {questions_f(); break; }
+                    case 4: {
+                        if (times_cv != 0 && times_t != 0) {
+                            if (good && star[workers] >= 3) {
+                                budget *= 1.2;
+                            }
+                            else if (bad && star[workers] >= 3) {
+                                budget *= 1.05;
+                            }
+                            else if (mid && star[workers] >= 3) {
+                                budget *= 1.1;
+                            }
+
+
+
+                            if (good && star[workers] < 3) {
+                                budget *= 1;
+                            }
+                            else if (bad && star[workers] < 3) {
+                                budget *= 0.7;
+                            }
+                            else if (mid && star[workers] < 3) {
+                                budget *= 0.9;
+                            }
+                            workers += 1;
+                        }
+                        else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); }
+                        break;
+                        
                     }
+                    case 5: {
+                        if (times_cv != 0 && times_t != 0) {
+                            if (good && star[i] >= 3) {
+                                budget *= 0.7;
+                            }
+                            else if (bad && star[workers] >= 3) {
+                                budget *= 1.1;
+                            }
+                            else if (mid && star[workers] >= 3) {
+                                budget *= 0.9;
+                            }
+
+
+
+                            if (good && star[workers] < 3) {
+                                budget *= 0.9;
+                            }
+                            else if (bad && star[workers] < 3) {
+                                budget *= 1.2;
+                            }
+                            else if (mid && star[workers] < 3) {
+                                budget *= 1;
+                            }
+
+
+
+                            star.pop_back();
+                            name.pop_back();
+                            if (vc[i].empty()) { break; }
+                            else { vc.pop_back(); }
+                        }
+                        else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); }
+                       
+                        break;
+                        
+                     
+                        
+                    }
+                    
+                    }
+                    if (ch == 5 || ch == 4) { if (times_cv != 0 && times_t != 0) { system("cls"); break; times_t = 0; times_cv = 0;
+                    } else { continue; } }
+                    }
+            
                 }
-                candidates += 2;
+                
             }
+            candidates += 2;
 
             break;
         }
@@ -685,13 +774,6 @@ void game() {
 
 
     }
-}
-
-    
-
-
-
-
 
 
 
