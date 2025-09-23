@@ -217,7 +217,7 @@ void questions_f() {
 }
 void line() { cout << " |-------------------------------------------------------------------------------------------------------------|" << endl; }
 void list_of_workers(vector<string>&a, vector<int>&b) {
-    for (int i = 0; i < a.size(); i++) {
+    for (int i = 0; i < a.size()-1; i++) {
         cout << to_string(i + 1) + ") " << a[i] + "; Raiting:" + to_string(b[i]);
     }
 }
@@ -814,4 +814,5 @@ int main()
 
     return 0;
 }
+
 
