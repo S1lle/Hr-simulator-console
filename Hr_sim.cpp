@@ -242,7 +242,7 @@ void menu() {
         cout << "                                                     Info(2)" << endl << endl;
         cout << "                                                   Settings(3)" << endl << endl;
         cout << endl;
-        cout << "Beta 1.0.0" << endl;
+        cout << "Alpha 0.1.1" << endl;
         line();
         cout << "                                                          ";
         cin >> a;
@@ -266,7 +266,7 @@ void menu() {
             string f = "asd";
             cout << endl << "For all bugs, or questions please contact - @S1llek" << endl;
             cout << "All copirights 'Sillek dev'" << endl;
-            cout << "Closed alpha 0.1.0 test" << endl << endl;
+            cout << "Closed alpha 0.1.1 test" << endl << endl;
             cout << "(Press Enter to exit)";
             cin.ignore();
             getline(cin, f);
@@ -814,3 +814,4 @@ int main()
 
     return 0;
 }
+
