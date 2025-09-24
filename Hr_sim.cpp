@@ -178,7 +178,7 @@ void random_cv(string idk[5], vector<string>& cvs) {
     string text = "";
     cvs.push_back(idk[vc]);
     text = idk[vc];
-    ps(text + "\n", 20);
+    ps(text + "\n", 10);
 }
 void dialog(const string& text, int delay_ms, string a) {
     cout << a << " ";
@@ -216,9 +216,9 @@ void questions_f() {
 
 }
 void line() { cout << " |-------------------------------------------------------------------------------------------------------------|" << endl; }
-void list_of_workers(vector<string>&a, vector<int>&b) {
-    for (int i = 0; i < a.size()-1; i++) {
-        cout << to_string(i + 1) + ") " << a[i] + "; Raiting:" + to_string(b[i]);
+void list_of_workers(vector<string>& a, vector<int>& b) {
+    for (int i = 0; i < a.size() - 1; i++) {
+        cout << to_string(i + 1) + ") " << a[i] + "; Raiting:" + to_string(b[i]) << endl;
     }
 }
 
@@ -288,7 +288,7 @@ void menu() {
         }
         case 3: {
             system("cls");
-            cout << endl << "Here is nothing" << endl;
+            cout << endl << "Terminal color(1)" << endl << endl;
             string f;
             cout << "(Press Enter to exit)";
             cin.ignore();
@@ -296,9 +296,16 @@ void menu() {
             line();
 
             if (f.empty()) {
-
                 system("cls");
                 break;
+            }
+            else if (f == "1") {
+                cout << "Write num from 1 to 99" << endl << "(1 - blue, 2 - green, 3 - light blue, 4 - red, 5 - purple)" << endl;
+                int c;
+                cin >> c;
+                system((string("color ") + to_string(c)).c_str());
+                system("cls");
+                continue;
             }
 
         }
@@ -594,14 +601,34 @@ void game() {
         vector<string> name;
         vector<int> star;
         vector<string> vc;
-        int days = 0;
-        int candidates = 6;
+        int days = 4;
+        int candidates = 1;
         int ch, ch_i, budget = 500, workers = 0;
         while (true) {
-            
-            if (budget != 0) {
+            switch (days) {
+            case 2: {
+                dialog("A new workday has begun. Review today's applicants carefully—HR is counting on you", 20, freaz);
+                break;
+            }
+            case 3: {
+                dialog("The office is open. Time to sort files, check resumes, and make the tough calls.", 20, freaz);
+                break;
+            }
+            case 4: {
+                dialog("Don’t keep the candidates waiting. Your decisions shape the company’s future!", 20, freaz);
+                break;
+            }
+            case 5: {
+                dialog("Another busy day ahead. Stay sharp, follow protocol, and trust your instincts.", 20, freaz);
+                break;
+            }
+            }
+           
+
+            if (budget != 0 && days <= 5) {
+                
                 bool good = false, mid = false, bad = false;
-                days += 1;
+                cout << endl;
                 ps("Day " + to_string(days), 20);
                 for (int i = 0; i < candidates; i++) {
                     /*for (int d = 0; d < vc.size(); d++) {
@@ -710,6 +737,7 @@ void game() {
                                     budget *= 1;
                                 }
                                 workers += 1;
+                                days += 1;
                             }
                             else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); }
                             break;
@@ -740,10 +768,10 @@ void game() {
                                 }
 
 
-
+                                days += 1;
                                 star.pop_back();
                                 name.pop_back();
-                                vc.pop_back(); 
+                                vc.pop_back();
                             }
                             else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); }
                         case 6: {
@@ -753,7 +781,7 @@ void game() {
                             else { ps("It's empty!", 20); }
                         }
 
-                            break;
+                              break;
 
 
 
@@ -771,28 +799,51 @@ void game() {
                 }
 
             }
-            else { system("cls"); 
-                    string l;
-                   ps("You lost... Microloft went bankrupt",20); cout << endl;
-                   ps("It's all your fault, you know?", 20); cout << endl;
-                   ps("Try your best next time", 20); cout << endl;
+            else if (budget < 0) {
+                system("cls");
+                string l;
+                ps("You lost... Microloft went bankrupt", 20); cout << endl;
+                ps("It's all your fault, you know?", 20); cout << endl;
+                ps("Try your best next time", 20); cout << endl;
 
-                   cout << endl << "(Press Enter to go to menu)\n";
-                   cin.ignore();
-                   getline(cin, l);
-                   system("cls");
-                   name.clear();
-                   star.clear();
-                   vc.clear();
+                cout << endl << "(Press Enter to go to menu)\n";
+                cin.ignore();
+                getline(cin, l);
+                system("cls");
+                name.clear();
+                star.clear();
+                vc.clear();
 
-                   break;
- }
+                break;
+            }
+            else if (days > 5) {
+            dialog("That was good week! You done well! Waiting for you!", 20, freaz);
+            cout << endl;
+            break; }
             candidates += 2;
         }
-        
+        name.clear();
+        star.clear();
+        vc.clear();
+        ps("Sillek - Thank you for playing! I hope you enjoyed the game, have a great day!", 20);
+        cout << endl;
+        string b;
+        cout << "Your stats: \nWorkers: " << workers << "\nBudget: " << budget <<"\nRanking: ";
+        if (budget >= 300 && budget < 500) {b = "C+";}
+        else if (budget >= 500 && budget < 1000) { b = "B+"; }
+        else { b = "A+"; }
+        cout << b << endl;
+        ps("Sillek - Well done!", 20);
+        cin.ignore();
+        getline(cin, b);
+
+        cout << endl << "(Press Enter to go to menu)\n";
+        system("cls");
 
         break;
     }
+    
+   
     }
 
 
@@ -806,7 +857,7 @@ int main()
     setlocale(LC_ALL, "");
     srand(time(0));
 
-        //menu();
+    //menu();
     while (true) {
         game();
         menu();
