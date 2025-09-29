@@ -12,6 +12,7 @@ using namespace std::chrono;
 
 
 // змінні 
+bool unlimited = false;
 string username;
 string character = "( • ~ • )\n" + username + " - ";
 string freaz = "(^. .^)\n Freaz - ";
@@ -193,7 +194,7 @@ void random_ans(string ans[14], int a, string character) {
 }
 void rand_prog(string names[50], string surnames[50], vector<string>& d) {
     int a = rand() % 49 + 1, b = rand() % 49 + 1;
-    d.push_back(names[a] + " " + surnames[b] + " - ");
+    d.push_back(names[a] + " " + surnames[b]);
     string name = "Name: " + names[a] + " " + surnames[b] + "\n";
     cout << name;
 }
@@ -592,9 +593,11 @@ void game() {
             dialog("Hello new worker! What's your name?\n\n", 20, freaz);
             cout << "Enter your name: ";
             cin >> username;
+            character = "( • ~ • )\n" + username + " - ";
+            
 
         }
-
+        string cand_character = "( - _ - )\n";
         dialog("Hello " + username + " it's your first working day!\n\n", 20, freaz);
         dialog("So let's start!\n\n", 20, freaz);
         system("cls");
@@ -603,7 +606,7 @@ void game() {
         vector<string> vc;
         int days = 1;
         int candidates = 3;
-        int ch, ch_i, budget = 500, workers = 0;
+        int ch=0, ch_i, budget = 500, workers = 0;
         while (true) {
             switch (days) {
             case 2: {
@@ -649,9 +652,17 @@ void game() {
                         cout << endl;
                         cout << "1 - CV     2 - Talk      3 - Notepad      6 - list\n      4 - Accept      5 - Reject\n\n              ";
                         cin >> ch;
+                        
+                       
+                      
+                        if(ch > 6){}
                         switch (ch) {
-
+                        case 0:{
+                            continue;
+                            break;
+                        }
                         case 1: {
+                            
                             if (times == 0) {
                                 if (star[workers] <= 2) {
                                     random_cv(vc_p_jun, vc);
@@ -669,7 +680,7 @@ void game() {
                         case 2: {
                             cout << "Questions:\n";
                             for (size_t j = 0; j < 14; j++) {
-                                cout << to_string(j + 1) + ") " << questions[j] + ";" << endl;
+                                cout << to_string(j + 1) + ") " << questions[j] + ";" << endl << endl;
                             }
                             cout << "Choose question:"; cin >> ch_i;
 
@@ -677,33 +688,33 @@ void game() {
                             switch (star[i]) {
                             case 1: {
                                 int b = rand() % 10;
-                                if (b > 4) { dialog(bad_answers[ch_i - 1], 20, name[workers]); bad = true; }
-                                else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, name[workers]); mid = true; }
-                                else if (b == 1) { dialog(good_answers[ch_i - 1], 20, name[workers]); good = true; }break;
+                                if (b > 4) { dialog(bad_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); bad = true; }
+                                else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); mid = true; }
+                                else if (b == 1) { dialog(good_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); good = true; }break;
                             }
                             case 2: {
                                 int b = rand() % 10;
-                                if (b >= 4) { dialog(bad_answers[ch_i - 1], 20, name[workers]); bad = true; }
-                                else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, name[workers]); mid = true; }
-                                else if (b == 1) { dialog(good_answers[ch_i - 1], 20, name[workers]); good = true; } break;
+                                if (b >= 4) { dialog(bad_answers[ch_i - 1], 20,cand_character+name[workers]+" - "); bad = true; }
+                                else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); mid = true; }
+                                else if (b == 1) { dialog(good_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); good = true; } break;
                             }
                             case 3: {
                                 int b = rand() % 10;
-                                if (b >= 8) { dialog(bad_answers[ch_i - 1], 20, name[workers]);  bad = true; }
-                                else if (b < 8 && b >= 3) { dialog(mid_answers[ch_i - 1], 20, name[workers]); mid = true; }
-                                else if (b < 3) { dialog(good_answers[ch_i - 1], 20, name[workers]); good = true; }break;
+                                if (b >= 8) { dialog(bad_answers[ch_i - 1], 20, cand_character+name[workers]+" - ");  bad = true; }
+                                else if (b < 8 && b >= 3) { dialog(mid_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); mid = true; }
+                                else if (b < 3) { dialog(good_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); good = true; }break;
                             }
                             case 4: {
                                 int b = rand() % 10;
-                                if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, name[workers]);  bad = true; }
-                                else if (b < 9 && b >= 5) { dialog(mid_answers[ch_i - 1], 20, name[workers]); mid = true; }
-                                else if (b < 5) { dialog(good_answers[ch_i - 1], 20, name[workers]); good = true; }break;
+                                if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, cand_character+name[workers]+" - ");  bad = true; }
+                                else if (b < 9 && b >= 5) { dialog(mid_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); mid = true; }
+                                else if (b < 5) { dialog(good_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); good = true; }break;
                             }
                             case 5: {
                                 int b = rand() % 10;
-                                if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, name[workers]);  bad = true; }
-                                else if (b < 9 && b >= 7) { dialog(mid_answers[ch_i - 1], 20, name[workers]); }
-                                else if (b < 7) { dialog(good_answers[ch_i - 1], 20, name[workers]); good = true; }break;
+                                if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, cand_character+name[workers]+" - ");  bad = true; }
+                                else if (b < 9 && b >= 7) { dialog(mid_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); }
+                                else if (b < 7) { dialog(good_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); good = true; }break;
                             }
                                   break;
 
@@ -716,13 +727,13 @@ void game() {
                         case 4: {
                             if (times_cv != 0 && times_t != 0) {
                                 if (good && star[workers] >= 3) {
-                                    budget *= 1.5;
+                                    budget *= 1.2;
                                 }
                                 else if (bad && star[workers] >= 3) {
-                                    budget *= 1.1;
+                                    budget *= 0.7;
                                 }
                                 else if (mid && star[workers] >= 3) {
-                                    budget *= 1.3;
+                                    budget *= 1.1;
                                 }
 
 
@@ -780,6 +791,7 @@ void game() {
                             }
                             else { ps("It's empty!", 20); }
                         }
+                        
 
                               break;
 
@@ -787,7 +799,7 @@ void game() {
 
                         }
 
-                        }
+                        
                         if (ch == 5 || ch == 4) {
                             if (times_cv != 0 && times_t != 0) {
                                 system("cls"); break; times_t = 0; times_cv = 0;
@@ -799,7 +811,7 @@ void game() {
                 }
 
             }
-            else if (budget < 0) {
+             if (budget < 0) {
                 system("cls");
                 string l;
                 ps("You lost... Microloft went bankrupt", 20); cout << endl;
@@ -847,7 +859,7 @@ void game() {
     }
 
 
-}
+}}
 
 
 
@@ -865,6 +877,5 @@ int main()
 
     return 0;
 }
-
 
 
