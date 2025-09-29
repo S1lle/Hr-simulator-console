@@ -20,6 +20,10 @@ string freaz = "(^. .^)\n Freaz - ";
 
 
 
+
+
+
+
 // масиви
 string names[50] = {
         "Andrew", "Brian", "William", "Gregory", "Dennis",
@@ -167,6 +171,17 @@ string stars[5]{
 
 
 // функції
+int get_integer_input() {
+    int choice;
+    while (!(cin >> choice)) {
+        cout << "Please enter a valid number\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    return choice;
+}
+
 void ps(const string& text, int delay_ms) {
 
     for (char c : text) {
@@ -246,13 +261,20 @@ void menu() {
         cout << "Alpha 0.1.1" << endl;
         line();
         cout << "                                                          ";
-        cin >> a;
+        a = get_integer_input();
         line();
         switch (a) {
         case 1: {
+            int b;
             system("cls");
             line();
-            int b;
+            ps("Do you want unlimited game or story mode?\n", 10);
+            cout << "1 - story mode\n";
+            cout << "2 - unlimited mode\n";
+            b = get_integer_input();
+            if (b == 2) {
+                unlimited = true;
+            }
             cout << "                                     █░░ █▀█ ▄▀█ █▀▄ █ █▄░█ █▀▀" << endl;
             cout << "                                     █▄▄ █▄█ █▀█ █▄▀ █ █░▀█ █▄█" << endl;
             cout << "                                                 (Loading)        " << endl;
@@ -291,10 +313,12 @@ void menu() {
             system("cls");
             cout << endl << "Terminal color(1)" << endl << endl;
             string f;
-            cout << "(Press Enter to exit)";
+            
             cin.ignore();
             getline(cin, f);
             line();
+            
+            cout << "(Press Enter to exit)";
 
             if (f.empty()) {
                 system("cls");
@@ -328,7 +352,7 @@ void game() {
 
     dialog("Hello! Welcome to the Microloft team! Would you like to go through a short tutorial?\n", 10, freaz);
     cout << "1 - Yes\n2 - No" << endl;
-    cin >> a;
+    a = get_integer_input();
     switch (a) {
     case 1: {
         vector<string> hzlol;
@@ -592,9 +616,9 @@ void game() {
             system("cls");
             dialog("Hello new worker! What's your name?\n\n", 20, freaz);
             cout << "Enter your name: ";
-            cin >> username;
+            getline(cin, username);
             character = "( • ~ • )\n" + username + " - ";
-            
+
 
         }
         string cand_character = "( - _ - )\n";
@@ -606,7 +630,8 @@ void game() {
         vector<string> vc;
         int days = 1;
         int candidates = 3;
-        int ch=0, ch_i, budget = 500, workers = 0;
+        int ch, ch_i, budget = 500, workers = 0;
+
         while (true) {
             switch (days) {
             case 2: {
@@ -626,10 +651,10 @@ void game() {
                 break;
             }
             }
-           
+
 
             if (budget != 0 && days <= 5) {
-                
+
                 bool good = false, mid = false, bad = false;
                 cout << endl;
                 ps("Day " + to_string(days), 20);
@@ -651,215 +676,225 @@ void game() {
                     while (true) {
                         cout << endl;
                         cout << "1 - CV     2 - Talk      3 - Notepad      6 - list\n      4 - Accept      5 - Reject\n\n              ";
-                        cin >> ch;
-                        
-                       
-                      
-                        if(ch > 6){}
-                        switch (ch) {
-                        case 0:{
-                            continue;
-                            break;
-                        }
-                        case 1: {
-                            
-                            if (times == 0) {
-                                if (star[workers] <= 2) {
-                                    random_cv(vc_p_jun, vc);
-                                }
-                                else if (star[workers] == 3) {
-                                    random_cv(vc_p_mid, vc);
-                                }
-                                else {
-                                    random_cv(vc_p_sen, vc);
-                                }times += 1; times_cv += 1;
-                            }
-                            else { ps(vc[workers], 20); }
-                            break;
-                        }
-                        case 2: {
-                            cout << "Questions:\n";
-                            for (size_t j = 0; j < 14; j++) {
-                                cout << to_string(j + 1) + ") " << questions[j] + ";" << endl << endl;
-                            }
-                            cout << "Choose question:"; cin >> ch_i;
 
-                            dialog(questions[ch_i - 1] + "\n", 20, character);
-                            switch (star[i]) {
+                        ch = get_integer_input();
+
+
+
+
+                        
+                            switch (ch) {
+                            case 0: {
+                                break;
+                            }
                             case 1: {
-                                int b = rand() % 10;
-                                if (b > 4) { dialog(bad_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); bad = true; }
-                                else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); mid = true; }
-                                else if (b == 1) { dialog(good_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); good = true; }break;
+
+                                if (times == 0) {
+                                    if (star[workers] <= 2) {
+                                        random_cv(vc_p_jun, vc);
+                                    }
+                                    else if (star[workers] == 3) {
+                                        random_cv(vc_p_mid, vc);
+                                    }
+                                    else {
+                                        random_cv(vc_p_sen, vc);
+                                    }times += 1; times_cv += 1;
+                                }
+                                else { ps(vc[workers], 20); }
+                                break;
                             }
                             case 2: {
-                                int b = rand() % 10;
-                                if (b >= 4) { dialog(bad_answers[ch_i - 1], 20,cand_character+name[workers]+" - "); bad = true; }
-                                else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); mid = true; }
-                                else if (b == 1) { dialog(good_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); good = true; } break;
+                                cout << "Questions:\n";
+                                for (size_t j = 0; j < 14; j++) {
+                                    cout << to_string(j + 1) + ") " << questions[j] + ";" << endl << endl;
+                                }
+                                cout << "Choose question:"; cin >> ch_i;
+
+                                dialog(questions[ch_i - 1] + "\n", 20, character);
+                                switch (star[i]) {
+                                case 1: {
+                                    int b = rand() % 10;
+                                    if (b > 4) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); bad = true; }
+                                    else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
+                                    else if (b == 1) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
+                                }
+                                case 2: {
+                                    int b = rand() % 10;
+                                    if (b >= 4) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); bad = true; }
+                                    else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
+                                    else if (b == 1) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; } break;
+                                }
+                                case 3: {
+                                    int b = rand() % 10;
+                                    if (b >= 8) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - ");  bad = true; }
+                                    else if (b < 8 && b >= 3) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
+                                    else if (b < 3) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
+                                }
+                                case 4: {
+                                    int b = rand() % 10;
+                                    if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - ");  bad = true; }
+                                    else if (b < 9 && b >= 5) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
+                                    else if (b < 5) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
+                                }
+                                case 5: {
+                                    int b = rand() % 10;
+                                    if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - ");  bad = true; }
+                                    else if (b < 9 && b >= 7) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); }
+                                    else if (b < 7) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
+                                }
+                                      break;
+
+
+                                }
+                                times_t += 1;
+                                break;
                             }
-                            case 3: {
-                                int b = rand() % 10;
-                                if (b >= 8) { dialog(bad_answers[ch_i - 1], 20, cand_character+name[workers]+" - ");  bad = true; }
-                                else if (b < 8 && b >= 3) { dialog(mid_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); mid = true; }
-                                else if (b < 3) { dialog(good_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); good = true; }break;
-                            }
+                            case 3: { questions_f(); break; }
                             case 4: {
-                                int b = rand() % 10;
-                                if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, cand_character+name[workers]+" - ");  bad = true; }
-                                else if (b < 9 && b >= 5) { dialog(mid_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); mid = true; }
-                                else if (b < 5) { dialog(good_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); good = true; }break;
+                                if (times_cv != 0 && times_t != 0) {
+                                    if (good && star[workers] >= 3) {
+                                        budget *= 1.2;
+                                    }
+                                    else if (bad && star[workers] >= 3) {
+                                        budget *= 0.7;
+                                    }
+                                    else if (mid && star[workers] >= 3) {
+                                        budget *= 1.1;
+                                    }
+
+
+
+                                    if (good && star[workers] < 3) {
+                                        budget *= 1.05;
+                                    }
+                                    else if (bad && star[workers] < 3) {
+                                        budget *= 0.3;
+                                    }
+                                    else if (mid && star[workers] < 3) {
+                                        budget *= 1;
+                                    }
+                                    workers += 1;
+                                    days += 1;
+                                }
+                                else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); }
+                                break;
+
                             }
                             case 5: {
-                                int b = rand() % 10;
-                                if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, cand_character+name[workers]+" - ");  bad = true; }
-                                else if (b < 9 && b >= 7) { dialog(mid_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); }
-                                else if (b < 7) { dialog(good_answers[ch_i - 1], 20, cand_character+name[workers]+" - "); good = true; }break;
+                                if (times_cv != 0 && times_t != 0) {
+                                    if (good && star[i] >= 3) {
+                                        budget *= 0.7;
+                                    }
+                                    else if (bad && star[workers] >= 3) {
+                                        budget *= 1.1;
+                                    }
+                                    else if (mid && star[workers] >= 3) {
+                                        budget *= 0.9;
+                                    }
+
+
+
+                                    if (good && star[workers] < 3) {
+                                        budget *= 1.1;
+                                    }
+                                    else if (bad && star[workers] < 3) {
+                                        budget *= 0.4;
+                                    }
+                                    else if (mid && star[workers] < 3) {
+                                        budget *= 1;
+                                    }
+
+
+                                    days += 1;
+                                    star.pop_back();
+                                    name.pop_back();
+                                    vc.pop_back();
+                                    break;
+                                }
+                                else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); }
+                            case 6: {
+                                if (workers != 0) {
+                                    list_of_workers(name, star); break;
+                                }
+                                else { ps("It's empty!", 20); }
                             }
+
+
                                   break;
 
 
+
                             }
-                            times_t += 1;
-                            break;
-                        }
-                        case 3: { questions_f(); break; }
-                        case 4: {
-                            if (times_cv != 0 && times_t != 0) {
-                                if (good && star[workers] >= 3) {
-                                    budget *= 1.2;
-                                }
-                                else if (bad && star[workers] >= 3) {
-                                    budget *= 0.7;
-                                }
-                                else if (mid && star[workers] >= 3) {
-                                    budget *= 1.1;
-                                }
 
 
-
-                                if (good && star[workers] < 3) {
-                                    budget *= 1.05;
-                                }
-                                else if (bad && star[workers] < 3) {
-                                    budget *= 0.3;
-                                }
-                                else if (mid && star[workers] < 3) {
-                                    budget *= 1;
-                                }
-                                workers += 1;
-                                days += 1;
+                                  if (ch == 5 || ch == 4) {
+                                      if (times_cv != 0 && times_t != 0) {
+                                          system("cls"); times_t = 0; times_cv = 0; break;
+                                      }
+                                      else { continue; }
+                                  }
                             }
-                            else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); }
-                            break;
-
-                        }
-                        case 5: {
-                            if (times_cv != 0 && times_t != 0) {
-                                if (good && star[i] >= 3) {
-                                    budget *= 0.7;
-                                }
-                                else if (bad && star[workers] >= 3) {
-                                    budget *= 1.1;
-                                }
-                                else if (mid && star[workers] >= 3) {
-                                    budget *= 0.9;
-                                }
 
 
-
-                                if (good && star[workers] < 3) {
-                                    budget *= 0.9;
-                                }
-                                else if (bad && star[workers] < 3) {
-                                    budget *= 1.2;
-                                }
-                                else if (mid && star[workers] < 3) {
-                                    budget *= 1;
-                                }
-
-
-                                days += 1;
-                                star.pop_back();
-                                name.pop_back();
-                                vc.pop_back();
-                            }
-                            else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); }
-                        case 6: {
-                            if (workers != 0) {
-                                list_of_workers(name, star); break;
-                            }
-                            else { ps("It's empty!", 20); }
-                        }
-                        
-
-                              break;
-
-
-
-                        }
 
                         
-                        if (ch == 5 || ch == 4) {
-                            if (times_cv != 0 && times_t != 0) {
-                                system("cls"); break; times_t = 0; times_cv = 0;
-                            }
-                            else { continue; }
+                         
+                        if (budget < 0) {
+                            system("cls");
+                            string l;
+                            ps("You lost... Microloft went bankrupt", 20); cout << endl;
+                            ps("It's all your fault, you know?", 20); cout << endl;
+                            ps("Try your best next time", 20); cout << endl;
+
+                            cout << endl << "(Press Enter to go to menu)\n";
+                            cin.ignore();
+                            getline(cin, l);
+                            system("cls");
+                            name.clear();
+                            star.clear();
+                            vc.clear();
+
+                            break;
                         }
+                        else if (days > 5 && unlimited == false) {
+                            dialog("That was good week! You done well! Waiting for you!", 20, freaz);
+                            cout << endl;
+                            break;
+                        }
+                        candidates += 2;
                     }
-
                 }
+           
 
-            }
-             if (budget < 0) {
-                system("cls");
-                string l;
-                ps("You lost... Microloft went bankrupt", 20); cout << endl;
-                ps("It's all your fault, you know?", 20); cout << endl;
-                ps("Try your best next time", 20); cout << endl;
 
-                cout << endl << "(Press Enter to go to menu)\n";
-                cin.ignore();
-                getline(cin, l);
-                system("cls");
-                name.clear();
-                star.clear();
-                vc.clear();
-
-                break;
-            }
-            else if (days > 5) {
-            dialog("That was good week! You done well! Waiting for you!", 20, freaz);
+            name.clear();
+            star.clear();
+            vc.clear();
+            ps("Sillek - Thank you for playing! I hope you enjoyed the game, have a great day!", 20);
             cout << endl;
-            break; }
-            candidates += 2;
+            string b;
+            cout << "Your stats: \nWorkers: " << workers << "\nBudget: " << budget << "\nRanking: ";
+            if (budget >= 300 && budget < 500) { b = "C+"; }
+            else if (budget >= 500 && budget < 1000) { b = "B+"; }
+            else { b = "A+"; }
+            cout << b << endl;
+            ps("Sillek - Well done!", 20);
+            cin.ignore();
+            getline(cin, b);
+
+            cout << endl << "(Press Enter to go to menu)\n";
+            system("cls");
+
+            break;
+            }
+
+
         }
-        name.clear();
-        star.clear();
-        vc.clear();
-        ps("Sillek - Thank you for playing! I hope you enjoyed the game, have a great day!", 20);
-        cout << endl;
-        string b;
-        cout << "Your stats: \nWorkers: " << workers << "\nBudget: " << budget <<"\nRanking: ";
-        if (budget >= 300 && budget < 500) {b = "C+";}
-        else if (budget >= 500 && budget < 1000) { b = "B+"; }
-        else { b = "A+"; }
-        cout << b << endl;
-        ps("Sillek - Well done!", 20);
-        cin.ignore();
-        getline(cin, b);
 
-        cout << endl << "(Press Enter to go to menu)\n";
-        system("cls");
 
-        break;
     }
-    
-   
     }
-
-
-}}
+}
 
 
 
@@ -869,13 +904,13 @@ int main()
     setlocale(LC_ALL, "");
     srand(time(0));
 
-    //menu();
+    
     while (true) {
-        game();
         menu();
+        game();
+        
     }
 
     return 0;
 }
-
 
