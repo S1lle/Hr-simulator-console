@@ -601,8 +601,8 @@ void game() {
         vector<string> name;
         vector<int> star;
         vector<string> vc;
-        int days = 4;
-        int candidates = 1;
+        int days = 1;
+        int candidates = 3;
         int ch, ch_i, budget = 500, workers = 0;
         while (true) {
             switch (days) {
@@ -865,5 +865,6 @@ int main()
 
     return 0;
 }
+
 
 
