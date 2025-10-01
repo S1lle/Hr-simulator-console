@@ -11,10 +11,13 @@ using namespace std;
 using namespace std::chrono;
 
 
-// змінні 
+// змінні
+bool cycle = true;
+int character_choose;
 bool unlimited = false;
 string username;
-string character = "( • ~ • )\n" + username + " - ";
+string character_list[] = {"( • ~ • )","( - - )", " ( @ - @ )", "( _ - _ )", "( ^ o ^ )", "( > _ < )", "( O _ o )", "( . _ . )", "( $ o $ )"};
+string character = character_list[0]+"\n" + username + " - ";
 string freaz = "(^. .^)\n Freaz - ";
 
 
@@ -24,7 +27,9 @@ string freaz = "(^. .^)\n Freaz - ";
 
 
 
+
 // масиви
+
 string names[50] = {
         "Andrew", "Brian", "William", "Gregory", "Dennis",
         "Eugene", "Justin", "Zachary", "Ivan", "Joseph",
@@ -275,6 +280,14 @@ void menu() {
             if (b == 2) {
                 unlimited = true;
             }
+            else if(b != 1 || b!=2){
+                string f;
+                ps("There is no game mode number "+to_string(b)+"\n",10);
+                cout << "(Press Enter to exit)";
+                cin.ignore();
+                getline(cin, f);
+                continue;
+            }
             cout << "                                     █░░ █▀█ ▄▀█ █▀▄ █ █▄░█ █▀▀" << endl;
             cout << "                                     █▄▄ █▄█ █▀█ █▄▀ █ █░▀█ █▄█" << endl;
             cout << "                                                 (Loading)        " << endl;
@@ -285,6 +298,7 @@ void menu() {
             break;
         }
         case 2: {
+            while true{
             system("cls");
             string f = "asd";
             cout << endl << "For all bugs, or questions please contact - @S1llek" << endl;
@@ -300,6 +314,10 @@ void menu() {
                 system("cls");
                 break;
             }
+                
+            }
+                
+            
 
             line();
 
@@ -311,7 +329,7 @@ void menu() {
         }
         case 3: {
             system("cls");
-            cout << endl << "Terminal color(1)" << endl << endl;
+            cout << endl << "Terminal color(1)\n Choose character(2)" << endl << endl;
             string f;
             
             cin.ignore();
@@ -329,6 +347,16 @@ void menu() {
                 int c;
                 cin >> c;
                 system((string("color ") + to_string(c)).c_str());
+                system("cls");
+                continue;
+            }
+            else if (f == "2") {
+                
+                for(int i=0;i<8;i++){
+                    cout << to_string(i)+") " << character_list[i] << endl << endl;
+                }
+                character_choose = get_integer_input();
+                character = character_list[character_choose-1] +"\n" + username + " - ";
                 system("cls");
                 continue;
             }
@@ -617,7 +645,7 @@ void game() {
             dialog("Hello new worker! What's your name?\n\n", 20, freaz);
             cout << "Enter your name: ";
             getline(cin, username);
-            character = "( • ~ • )\n" + username + " - ";
+            character = character_list[character_choose-1] +"\n" + username + " - ";
 
 
         }
@@ -913,4 +941,3 @@ int main()
 
     return 0;
 }
-
