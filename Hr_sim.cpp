@@ -13,11 +13,11 @@ using namespace std::chrono;
 
 // змінні
 bool cycle = true;
-int character_choose;
+int character_choose = 0;
 bool unlimited = false;
 string username;
-string character_list[] = {"( • ~ • )","( - - )", " ( @ - @ )", "( _ - _ )", "( ^ o ^ )", "( > _ < )", "( O _ o )", "( . _ . )", "( $ o $ )"};
-string character = character_list[0]+"\n" + username + " - ";
+string character_list[] = { "( • ~ • )","( - - )", " ( @ - @ )", "( _ - _ )", "( ^ o ^ )", "( > _ < )", "( O _ o )", "( . _ . )", "( $ o $ )" };
+string character = character_list[0] + "\n" + username + " - ";
 string freaz = "(^. .^)\n Freaz - ";
 
 
@@ -59,24 +59,24 @@ string surnames[50] = {
 
 
 string vc_p_sen[5] = {
-    "Senior Backend Developer (Java)\nOver 8 years of experience in developing high-load systems with Java and Spring. Designed and implemented a microservice architecture for an e-commerce platform serving millions of requests per day. Have deep knowledge of PostgreSQL, Kafka, and AWS. Mentored a team of 4 developers.",
-    "Senior Frontend Developer (React)\n7 years in frontend development, expert in React, TypeScript, and Next.js. Led the UI/UX development for a SaaS product, achieving a 40% reduction in page load times through rendering optimization. Conduct technical interviews and develop company coding standards.",
-    "Senior DevOps Engineer\n9 years of experience in infrastructure automation and support. Expert in Kubernetes, Terraform, and CI/CD with GitLab. Designed and migrated the company's infrastructure to AWS with almost zero downtime. I am engaged in optimizing cloud service costs.",
-    "Senior Data Scientist (Python)\n6 years of experience in machine learning. Specialize in NLP and recommendation systems. Developed and implemented a content personalization model that increased user engagement by 25%. Proficient in TensorFlow, PyTorch, and MLOps tools.",
-    "Senior iOS Developer (Swift)\nOver 7 years in mobile development for iOS. Lead developer on a project whose app has 5 million downloads in the App Store. Experienced with SwiftUI, Combine, and multi-module architecture. Responsible for technical decisions and code quality in the team." };
+    "                     Senior Backend Developer (Java)\nOver 8 years of experience in developing high-load systems with Java and Spring. Designed and implemented a microservice architecture for an e-commerce platform serving millions of requests per day. Have deep knowledge of PostgreSQL, Kafka, and AWS. Mentored a team of 4 developers.",
+    "                     Senior Frontend Developer (React)\n7 years in frontend development, expert in React, TypeScript, and Next.js. Led the UI/UX development for a SaaS product, achieving a 40% reduction in page load times through rendering optimization. Conduct technical interviews and develop company coding standards.",
+    "                     Senior DevOps Engineer\n9 years of experience in infrastructure automation and support. Expert in Kubernetes, Terraform, and CI/CD with GitLab. Designed and migrated the company's infrastructure to AWS with almost zero downtime. I am engaged in optimizing cloud service costs.",
+    "                     Senior Data Scientist (Python)\n6 years of experience in machine learning. Specialize in NLP and recommendation systems. Developed and implemented a content personalization model that increased user engagement by 25%. Proficient in TensorFlow, PyTorch, and MLOps tools.",
+    "                     Senior iOS Developer (Swift)\nOver 7 years in mobile development for iOS. Lead developer on a project whose app has 5 million downloads in the App Store. Experienced with SwiftUI, Combine, and multi-module architecture. Responsible for technical decisions and code quality in the team." };
 string vc_p_mid[5] = {
-    "Middle Python Developer\n3 years of commercial experience with Django and Flask. Developed REST APIs for a logistics company, integrated third-party services. Confident with PostgreSQL, Redis, and Docker. Eager to deepen knowledge in asynchronous tasks with Celery.",
-    "Middle Frontend Developer (Vue.js)\nOver 3 years of experience creating responsive interfaces with Vue.js (Vuex, Vue Router). Participated in refactoring a large monolithic frontend into a component-based architecture. Experienced with TypeScript and unit testing.",
-    "Middle QA Automation Engineer\n2.5 years of experience in test automation. I write UI tests in Java + Selenium WebDriver and API tests using RestAssured. Configured test runs in CI/CD (Jenkins). I want to grow in the direction of load testing.",
-    "Middle Android Developer (Kotlin)\n4 years in Android development. Worked on a retail application, implemented product catalog and shopping cart functionality. I use Coroutines, Dagger2, Retrofit, and adhere to Clean Architecture principles.",
-    "Middle .NET Developer\n3 years of experience developing web applications on ASP.NET Core. Created microservices for the banking sector, worked with MS SQL and RabbitMQ. Familiar with Azure DevOps for setting up pipelines."
+    "                     Middle Python Developer\n3 years of commercial experience with Django and Flask. Developed REST APIs for a logistics company, integrated third-party services. Confident with PostgreSQL, Redis, and Docker. Eager to deepen knowledge in asynchronous tasks with Celery.",
+    "                     Middle Frontend Developer (Vue.js)\nOver 3 years of experience creating responsive interfaces with Vue.js (Vuex, Vue Router). Participated in refactoring a large monolithic frontend into a component-based architecture. Experienced with TypeScript and unit testing.",
+    "                     Middle QA Automation Engineer\n2.5 years of experience in test automation. I write UI tests in Java + Selenium WebDriver and API tests using RestAssured. Configured test runs in CI/CD (Jenkins). I want to grow in the direction of load testing.",
+    "                     Middle Android Developer (Kotlin)\n4 years in Android development. Worked on a retail application, implemented product catalog and shopping cart functionality. I use Coroutines, Dagger2, Retrofit, and adhere to Clean Architecture principles.",
+    "                     Middle .NET Developer\n3 years of experience developing web applications on ASP.NET Core. Created microservices for the banking sector, worked with MS SQL and RabbitMQ. Familiar with Azure DevOps for setting up pipelines."
 };
 string vc_p_jun[5] = {
-    "Junior Python Developer\nGraduate of a technical university with deep theoretical knowledge of Python. Developed several pet projects, including a Telegram bot and a simple web scraper. Familiar with Flask and SQL (SQLite). Highly motivated to learn and gain initial commercial experience.",
-    "Junior Frontend Developer (React)\nCompleted 6-month Frontend courses. Proficient in HTML, CSS, JavaScript, and React. Created a portfolio of three projects, implementing routing, API interaction, and responsive design. Ready for test assignments.",
-    "Junior QA Engineer (Manual)\nCompleted software testing courses. I understand the development life cycle, testing types, and can create clear test documentation (test cases, bug reports). I have some experience testing websites as part of educational projects.",
-    "Junior Java Developer\nI have basic experience with Java Core and Spring Framework, gained during an internship. Participated in the development of an internal corporate portal. Familiar with Git, Maven, and the basics of working with databases. I aim to grow in backend development.",
-    "Junior C++ Developer\nFinal-year student, passionate about C++. I have a good knowledge of STL and OOP principles. For my term paper, I developed a console game. Looking for a part-time job to combine work with studies and gain real experience." };
+    "                     Junior Python Developer\nGraduate of a technical university with deep theoretical knowledge of Python. Developed several pet projects, including a Telegram bot and a simple web scraper. Familiar with Flask and SQL (SQLite). Highly motivated to learn and gain initial commercial experience.",
+    "                     Junior Frontend Developer (React)\nCompleted 6-month Frontend courses. Proficient in HTML, CSS, JavaScript, and React. Created a portfolio of three projects, implementing routing, API interaction, and responsive design. Ready for test assignments.",
+    "                     Junior QA Engineer (Manual)\nCompleted software testing courses. I understand the development life cycle, testing types, and can create clear test documentation (test cases, bug reports). I have some experience testing websites as part of educational projects.",
+    "                     Junior Java Developer\nI have basic experience with Java Core and Spring Framework, gained during an internship. Participated in the development of an internal corporate portal. Familiar with Git, Maven, and the basics of working with databases. I aim to grow in backend development.",
+    "                     Junior C++ Developer\nFinal-year student, passionate about C++. I have a good knowledge of STL and OOP principles. For my term paper, I developed a console game. Looking for a part-time job to combine work with studies and gain real experience." };
 
 
 
@@ -280,14 +280,17 @@ void menu() {
             if (b == 2) {
                 unlimited = true;
             }
-            else if(b != 1 || b!=2){
+            else if (b == 1) { unlimited = false; }
+            else{
                 string f;
-                ps("There is no game mode number "+to_string(b)+"\n",10);
+                ps("There is no game mode number " + to_string(b) + "\n", 10);
                 cout << "(Press Enter to exit)";
                 cin.ignore();
                 getline(cin, f);
+                system("cls");
                 continue;
             }
+            system("cls");
             cout << "                                     █░░ █▀█ ▄▀█ █▀▄ █ █▄░█ █▀▀" << endl;
             cout << "                                     █▄▄ █▄█ █▀█ █▄▀ █ █░▀█ █▄█" << endl;
             cout << "                                                 (Loading)        " << endl;
@@ -298,44 +301,46 @@ void menu() {
             break;
         }
         case 2: {
-            while true{
-            system("cls");
-            string f = "asd";
-            cout << endl << "For all bugs, or questions please contact - @S1llek" << endl;
-            cout << "All copirights 'Sillek dev'" << endl;
-            cout << "Closed alpha 0.1.1 test" << endl << endl;
-            cout << "(Press Enter to exit)";
-            cin.ignore();
-            getline(cin, f);
-            if (f == "kzn" or f == "KZN") {
-                string a;
-                cout << endl << "Is that lonely man? - KZN";
-                getline(cin, a);
+            
                 system("cls");
+                string f = "asd";
+                cout << endl << "For all bugs, or questions please contact - @S1llek" << endl;
+                cout << "All copirights 'Sillek dev'" << endl;
+                cout << "Closed alpha 0.1.1 test" << endl << endl;
+                cout << "(Press Enter to exit)";
+                cin.ignore();
+                getline(cin, f);
+                if (f == "kzn" or f == "KZN") {
+                    string a;
+                    cout << endl << "Is that lonely man? - KZN";
+                    getline(cin, a);
+                    system("cls");
+                    break;
+                }
+
+                if (f.empty()) {
+                    system("cls");
+                    break;
+                }
+                line();
                 break;
-            }
-                
-            }
-                
             
 
-            line();
 
-            if (f.empty()) {
-                system("cls");
-                break;
-            }
+
+            
+
 
         }
         case 3: {
             system("cls");
             cout << endl << "Terminal color(1)\n Choose character(2)" << endl << endl;
             string f;
-            
+
             cin.ignore();
             getline(cin, f);
             line();
-            
+
             cout << "(Press Enter to exit)";
 
             if (f.empty()) {
@@ -351,15 +356,19 @@ void menu() {
                 continue;
             }
             else if (f == "2") {
-                
-                for(int i=0;i<8;i++){
-                    cout << to_string(i)+") " << character_list[i] << endl << endl;
+                cout << endl;
+                for (int i = 0; i <= 8; i++) {
+                    cout << to_string(i+1) + ") " << character_list[i] << endl << endl;
                 }
                 character_choose = get_integer_input();
-                character = character_list[character_choose-1] +"\n" + username + " - ";
+                
+                if (character_choose > 9 || character_choose < 0) { ps("There is no option - " + to_string(character_choose) + "\n", 10); cout << endl << "(Press Enter to exit)"; cin.ignore(); getline(cin, f);  break; }
+                else { character = character_list[character_choose - 1] + "\n" + username + " - "; }
+                
                 system("cls");
                 continue;
             }
+            break;
 
         }
         }
@@ -397,6 +406,7 @@ void game() {
 
         dialog(username + "... interesting name! Nice to meet you!\n\n", 20, freaz);
         cout << "(Press Enter to continue)";
+        character = character_list[character_choose] + "\n" + username + " - ";
         getline(cin, skip);
         system("cls");
         dialog("Well, let's get to work!\n", 20, freaz);
@@ -631,6 +641,7 @@ void game() {
         dialog("So we end tutorial! Good luck " + username + "! Also try to type 'kzn' in the info\n\n", 20, freaz);
 
         cout << "\n(Press Enter to continue)";
+        cin.ignore();
         getline(cin, skip);
 
 
@@ -645,13 +656,17 @@ void game() {
             dialog("Hello new worker! What's your name?\n\n", 20, freaz);
             cout << "Enter your name: ";
             getline(cin, username);
-            character = character_list[character_choose-1] +"\n" + username + " - ";
+            
 
 
         }
+        character = character_list[character_choose] + "\n" + username + " - ";
+        string skip;
         string cand_character = "( - _ - )\n";
         dialog("Hello " + username + " it's your first working day!\n\n", 20, freaz);
         dialog("So let's start!\n\n", 20, freaz);
+        cout << "\n(Press Enter to continue)";
+        getline(cin, skip);
         system("cls");
         vector<string> name;
         vector<int> star;
@@ -664,18 +679,26 @@ void game() {
             switch (days) {
             case 2: {
                 dialog("A new workday has begun. Review today's applicants carefully—HR is counting on you", 20, freaz);
+                cout << "\n(Press Enter to continue)";
+                getline(cin, skip);
                 break;
             }
             case 3: {
                 dialog("The office is open. Time to sort files, check resumes, and make the tough calls.", 20, freaz);
+                cout << "\n(Press Enter to continue)";
+                getline(cin, skip);
                 break;
             }
             case 4: {
                 dialog("Don’t keep the candidates waiting. Your decisions shape the company’s future!", 20, freaz);
+                cout << "\n(Press Enter to continue)";
+                getline(cin, skip);
                 break;
             }
             case 5: {
                 dialog("Another busy day ahead. Stay sharp, follow protocol, and trust your instincts.", 20, freaz);
+                cout << "\n(Press Enter to continue)";
+                getline(cin, skip);
                 break;
             }
             }
@@ -685,188 +708,205 @@ void game() {
 
                 bool good = false, mid = false, bad = false;
                 cout << endl;
-                ps("Day " + to_string(days), 20);
+                cout << "               |===================================================|" << endl;
+                cout << "                                     Day " + to_string(days);
                 for (int i = 0; i < candidates; i++) {
                     /*for (int d = 0; d < vc.size(); d++) {
                         if (vc[d].empty()) { cout << "There is no cvs"; break; }
                         cout << vc[d];
                     }*/
-                    cout << endl << "Company budget: " << budget << "$" << endl;
-                    cout << "Candidates left: " << candidates - i << endl;
-                    cout << "Workers: " << workers << endl << endl;
+                    
+                    cout << endl << "                              Company budget: " << budget << "$" << endl;
+                    cout << "                              Candidates left: " << candidates - i << endl;
+                    cout << "                                   Workers: " << workers << endl << endl;
+                    cout << "               |===================================================|" << endl;
                     cout << endl;
+                    cout << "                              ";
                     rand_prog(names, surnames, name);
                     cout << endl;
+                    cout << "                              ";
                     raiting(stars, star);
                     cout << endl;
                     cout << endl;
                     int times = 0, times_t = 0, times_cv = 0;
                     while (true) {
+                        cout << "\n     |=======================================================================|";
                         cout << endl;
-                        cout << "1 - CV     2 - Talk      3 - Notepad      6 - list\n      4 - Accept      5 - Reject\n\n              ";
+                        cout << "\n          ________       __________        _____________        __________\n         | 1 - CV |     | 2 - Talk |      | 3 - Notepad |      | 6 - list |\n          --------       ----------        -------------        ----------\n\n                        ____________        ____________\n                       | 4 - Accept |      | 5 - Reject | \n                        ------------        ------------\n\n";
+                        cout << "     |=======================================================================|" << endl << "                                       ";
 
                         ch = get_integer_input();
 
 
 
 
-                        
-                            switch (ch) {
-                            case 0: {
-                                break;
-                            }
-                            case 1: {
 
-                                if (times == 0) {
-                                    if (star[workers] <= 2) {
-                                        random_cv(vc_p_jun, vc);
-                                    }
-                                    else if (star[workers] == 3) {
-                                        random_cv(vc_p_mid, vc);
-                                    }
-                                    else {
-                                        random_cv(vc_p_sen, vc);
-                                    }times += 1; times_cv += 1;
+                        switch (ch) {
+                        case 0: {
+                            break;
+                        }
+                        case 1: {
+
+                            if (times == 0) {
+                                if (star[workers] <= 2) {
+                                    random_cv(vc_p_jun, vc);
                                 }
-                                else { ps(vc[workers], 20); }
-                                break;
+                                else if (star[workers] == 3) {
+                                    random_cv(vc_p_mid, vc);
+                                }
+                                else {
+                                    random_cv(vc_p_sen, vc);
+                                }times += 1; times_cv += 1;
+                            }
+                            else { ps(vc[workers], 20); }
+                            break;
+                        }
+                        case 2: {
+                            cout << "Questions:\n";
+                            for (size_t j = 0; j < 14; j++) {
+                                cout << to_string(j + 1) + ") " << questions[j] + ";" << endl << endl;
+                            }
+                            cout << "Choose question:"; 
+                            cin >> ch_i;
+                            system("cls");
+                            ps("Chosen question:" + to_string(ch_i)+"\n", 10);
+                            
+
+                            dialog(questions[ch_i - 1] + "\n", 20, character);
+                            switch (star[i]) {
+                            case 1: {
+                                int b = rand() % 10;
+                                if (b > 4) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); bad = true; }
+                                else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
+                                else if (b == 1) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
                             }
                             case 2: {
-                                cout << "Questions:\n";
-                                for (size_t j = 0; j < 14; j++) {
-                                    cout << to_string(j + 1) + ") " << questions[j] + ";" << endl << endl;
-                                }
-                                cout << "Choose question:"; cin >> ch_i;
-
-                                dialog(questions[ch_i - 1] + "\n", 20, character);
-                                switch (star[i]) {
-                                case 1: {
-                                    int b = rand() % 10;
-                                    if (b > 4) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); bad = true; }
-                                    else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
-                                    else if (b == 1) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
-                                }
-                                case 2: {
-                                    int b = rand() % 10;
-                                    if (b >= 4) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); bad = true; }
-                                    else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
-                                    else if (b == 1) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; } break;
-                                }
-                                case 3: {
-                                    int b = rand() % 10;
-                                    if (b >= 8) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - ");  bad = true; }
-                                    else if (b < 8 && b >= 3) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
-                                    else if (b < 3) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
-                                }
-                                case 4: {
-                                    int b = rand() % 10;
-                                    if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - ");  bad = true; }
-                                    else if (b < 9 && b >= 5) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
-                                    else if (b < 5) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
-                                }
-                                case 5: {
-                                    int b = rand() % 10;
-                                    if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - ");  bad = true; }
-                                    else if (b < 9 && b >= 7) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); }
-                                    else if (b < 7) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
-                                }
-                                      break;
-
-
-                                }
-                                times_t += 1;
-                                break;
+                                int b = rand() % 10;
+                                if (b >= 4) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); bad = true; }
+                                else if (b < 4 && b != 1) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
+                                else if (b == 1) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; } break;
                             }
-                            case 3: { questions_f(); break; }
+                            case 3: {
+                                int b = rand() % 10;
+                                if (b >= 8) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - ");  bad = true; }
+                                else if (b < 8 && b >= 3) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
+                                else if (b < 3) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
+                            }
                             case 4: {
-                                if (times_cv != 0 && times_t != 0) {
-                                    if (good && star[workers] >= 3) {
-                                        budget *= 1.2;
-                                    }
-                                    else if (bad && star[workers] >= 3) {
-                                        budget *= 0.7;
-                                    }
-                                    else if (mid && star[workers] >= 3) {
-                                        budget *= 1.1;
-                                    }
-
-
-
-                                    if (good && star[workers] < 3) {
-                                        budget *= 1.05;
-                                    }
-                                    else if (bad && star[workers] < 3) {
-                                        budget *= 0.3;
-                                    }
-                                    else if (mid && star[workers] < 3) {
-                                        budget *= 1;
-                                    }
-                                    workers += 1;
-                                    days += 1;
-                                }
-                                else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); }
-                                break;
-
+                                int b = rand() % 10;
+                                if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - ");  bad = true; }
+                                else if (b < 9 && b >= 5) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); mid = true; }
+                                else if (b < 5) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
                             }
                             case 5: {
-                                if (times_cv != 0 && times_t != 0) {
-                                    if (good && star[i] >= 3) {
-                                        budget *= 0.7;
-                                    }
-                                    else if (bad && star[workers] >= 3) {
-                                        budget *= 1.1;
-                                    }
-                                    else if (mid && star[workers] >= 3) {
-                                        budget *= 0.9;
-                                    }
-
-
-
-                                    if (good && star[workers] < 3) {
-                                        budget *= 1.1;
-                                    }
-                                    else if (bad && star[workers] < 3) {
-                                        budget *= 0.4;
-                                    }
-                                    else if (mid && star[workers] < 3) {
-                                        budget *= 1;
-                                    }
-
-
-                                    days += 1;
-                                    star.pop_back();
-                                    name.pop_back();
-                                    vc.pop_back();
-                                    break;
-                                }
-                                else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); }
-                            case 6: {
-                                if (workers != 0) {
-                                    list_of_workers(name, star); break;
-                                }
-                                else { ps("It's empty!", 20); }
+                                int b = rand() % 10;
+                                if (b >= 9) { dialog(bad_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - ");  bad = true; }
+                                else if (b < 9 && b >= 7) { dialog(mid_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); }
+                                else if (b < 7) { dialog(good_answers[ch_i - 1], 20, "\n" + cand_character + name[workers] + " - "); good = true; }break;
                             }
-
-
                                   break;
 
 
-
                             }
+                            times_t += 1;
+                            break;
+                        }
+                        case 3: { questions_f(); break; }
+                        case 4: {
+                            if (times_cv != 0 && times_t != 0) {
+                                if (good && star[workers] >= 3) {
+                                    budget *= 1.2;
+                                }
+                                else if (bad && star[workers] >= 3) {
+                                    budget *= 0.7;
+                                }
+                                else if (mid && star[workers] >= 3) {
+                                    budget *= 1.1;
+                                }
 
 
-                                  if (ch == 5 || ch == 4) {
-                                      if (times_cv != 0 && times_t != 0) {
-                                          system("cls"); times_t = 0; times_cv = 0; break;
-                                      }
-                                      else { continue; }
-                                  }
+
+                                if (good && star[workers] < 3) {
+                                    budget *= 1.05;
+                                }
+                                else if (bad && star[workers] < 3) {
+                                    budget *= 0.3;
+                                }
+                                else if (mid && star[workers] < 3) {
+                                    budget *= 1;
+                                }
+                                workers += 1;
+                                days += 1;
                             }
+                            else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); system("cls"); }
+                            break;
+
+                        }
+                        case 5: {
+                            if (times_cv != 0 && times_t != 0) {
+                                if (good && star[i] >= 3) {
+                                    budget *= 0.7;
+                                }
+
+
+                                else if (bad && star[workers] >= 3) {
+                                    budget *= 1.1;
+                                }
+                                else if (mid && star[workers] >= 3) {
+                                    budget *= 0.9;
+                                }
 
 
 
+                                if (good && star[workers] < 3) {
+                                    budget *= 1.1;
+                                }
+                                else if (bad && star[workers] < 3) {
+                                    budget *= 0.4;
+                                }
+                                else if (mid && star[workers] < 3) {
+                                    budget *= 1;
+                                }
+
+
+                                days += 1;
+                                star.pop_back();
+                                name.pop_back();
+                                vc.pop_back();
+                                break;
+                            }
+                            else { ps("\nYou didn't watch candidates cv or talked with him!\n", 20); break; }}
                         
-                         
+                    
+                            
+                            
+                        case 6: {
+                            if (workers != 0) {
+                                list_of_workers(name, star); break;
+                            }
+                            else { ps("It's empty!", 20); }
+                        }
+
+
+                              break;
+
+
+
+                        }
+
+
+                              if (ch == 5 || ch == 4) {
+                                  if (times_cv != 0 && times_t != 0) {
+                                      system("cls"); times_t = 0; times_cv = 0; break;
+                                  }
+                                  else { continue; }
+                              }
+                        }
+
+
+
+
+
                         if (budget < 0) {
                             system("cls");
                             string l;
@@ -892,28 +932,28 @@ void game() {
                         candidates += 2;
                     }
                 }
-           
 
 
-            name.clear();
-            star.clear();
-            vc.clear();
-            ps("Sillek - Thank you for playing! I hope you enjoyed the game, have a great day!", 20);
-            cout << endl;
-            string b;
-            cout << "Your stats: \nWorkers: " << workers << "\nBudget: " << budget << "\nRanking: ";
-            if (budget >= 300 && budget < 500) { b = "C+"; }
-            else if (budget >= 500 && budget < 1000) { b = "B+"; }
-            else { b = "A+"; }
-            cout << b << endl;
-            ps("Sillek - Well done!", 20);
-            cin.ignore();
-            getline(cin, b);
 
-            cout << endl << "(Press Enter to go to menu)\n";
-            system("cls");
+                name.clear();
+                star.clear();
+                vc.clear();
+                ps("Sillek - Thank you for playing! I hope you enjoyed the game, have a great day!", 20);
+                cout << endl;
+                string b;
+                cout << "Your stats: \nWorkers: " << workers << "\nBudget: " << budget << "\nRanking: ";
+                if (budget >= 300 && budget < 500) { b = "C+"; }
+                else if (budget >= 500 && budget < 1000) { b = "B+"; }
+                else { b = "A+"; }
+                cout << b << endl;
+                ps("Sillek - Well done!", 20);
+                cin.ignore();
+                getline(cin, b);
 
-            break;
+                cout << endl << "(Press Enter to go to menu)\n";
+                system("cls");
+
+                break;
             }
 
 
@@ -922,7 +962,7 @@ void game() {
 
     }
     }
-}
+
 
 
 
@@ -932,11 +972,11 @@ int main()
     setlocale(LC_ALL, "");
     srand(time(0));
 
-    
+
     while (true) {
         menu();
         game();
-        
+
     }
 
     return 0;
