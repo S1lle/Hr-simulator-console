@@ -665,7 +665,7 @@ void game() {
         vector<int> star;
         vector<string> vc;
         int days = 1;
-        int candidates = 3;
+        int candidates = 2;
         int ch, ch_i, budget = 500, workers = 0;
         bool end=true;
 
@@ -955,10 +955,9 @@ void game() {
                 cout << b << endl;
                 ps("Sillek - Well done!", 20);
                 cin.ignore();
-                cout << endl << "(Press Enter to go to menu)\n";
                 getline(cin, b);
 
-                
+                cout << endl << "(Press Enter to go to menu)\n";
                 system("cls");
 
                
